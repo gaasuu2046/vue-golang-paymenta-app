@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package paymentservice;
+
+
+// 支払いを実施するサービスを定義
+service PayManager {
+  rpc Charge (PayRequest) returns (PayResponse) {}
+}
+
+// カード決済に使うパラメータをリクエストに定義
+message PayRequest {
+  int64 id = 1;
+  string token = 2;
+  int64 amount = 3;
+  string name = 4;
+  string description = 5; 
+}
+
+// カード決済後のレスポンスを定義
+message PayResponse {
+  bool paid = 1;
+  bool captured = 3;
+  int64 amount = 2; 
+}
